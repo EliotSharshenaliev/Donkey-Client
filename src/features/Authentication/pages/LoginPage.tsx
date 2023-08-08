@@ -4,7 +4,7 @@ import {useForm} from "antd/es/form/Form";
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {useAuth} from "../../../common/auth/useAuth";
 import {BackgroundImage} from "../../../common/components/Background/Background";
-import {validatePassword} from "../../../common/utils/validators";
+import {validatePassword} from "../utils/validators";
 import {loginApi} from "../../../services/api/authService";
 import {User} from "../types/user-type";
 import {useNavigate} from "react-router-dom";
@@ -29,6 +29,7 @@ export const LoginPage = () => {
 
     const handleLogin = async (credentials) => {
         try {
+            setLoading(true)
             const user: User = await loginApi(credentials)
             setUser(user)
         } catch (e) {
@@ -47,6 +48,8 @@ export const LoginPage = () => {
                     description: 'Error connection '
                 });
             }
+        }finally {
+            setLoading(false)
         }
     }
 

@@ -13,11 +13,11 @@ export const headTable: ColumnsType<IBot> = [
         key: 'key',
     },
 
-    Table.SELECTION_COLUMN,
     {
         title: 'username',
         dataIndex: 'user',
         key: 'user',
+        render: (_, {user}) => user.username,
     },
     {
         title: 'user',

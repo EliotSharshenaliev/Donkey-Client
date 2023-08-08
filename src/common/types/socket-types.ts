@@ -1,5 +1,6 @@
 import {User} from "../../features/Authentication/types/user-type";
 import {States} from "./states_of_bot";
+import {Dispatch, ReactNode, SetStateAction} from "react";
 
 export interface IBot {
     id: number
@@ -12,8 +13,14 @@ export interface IBot {
     user: User
 }
 
-export interface IOnMessage{
-    type: "send_list" | "send_object" | "delete_object"
-    message: IBot | IBot[]
+export interface SocketContextValue {
+    url: string,
+    loadingUrl: boolean
 }
+
+export interface SocketProviderProps {
+    children: ReactNode;
+}
+
+
 

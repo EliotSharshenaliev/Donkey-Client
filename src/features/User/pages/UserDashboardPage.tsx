@@ -1,13 +1,15 @@
 import {useNavigate} from "react-router-dom";
-import {Card, Typography} from "antd";
+import {Card, notification, Typography} from "antd";
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 import Link from "antd/lib/typography/Link";
 import React from "react";
 import {DonkeyIntegration} from "../components/DonkeyIntegration";
+import {handleLogout} from "../../../common/utils/logoutHandler";
 
 export const UserDashboardPage = () => {
     const navigate = useNavigate()
+
     return (
         <>
             <Card style={{maxWidth: "500px", ...styles.card}}>
@@ -32,7 +34,7 @@ export const UserDashboardPage = () => {
                         переходя по <Link onClick={() => navigate("/manual")}>ссылке</Link>
                     </Paragraph>
                     <Paragraph>
-                        Что бы выйти из акаунта <Link onClick={() => {}}>нажмите на ссылку</Link>
+                        Что бы выйти из акаунта <Link onClick={handleLogout}>нажмите на ссылку</Link>
                     </Paragraph>
                 </Typography>
             </Card>

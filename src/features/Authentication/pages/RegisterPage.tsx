@@ -2,12 +2,11 @@ import {Button, Card, Col, Form, Input, Layout, notification, Row, Space} from "
 import React from "react";
 import {useForm} from "antd/es/form/Form";
 import {UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons';
-import {useAuth} from "../../../common/auth/useAuth";
 import {BackgroundImage} from "../../../common/components/Background/Background";
-import {validateEmail, validatePassword, validateUsername} from "../../../common/utils/validators";
 import {registerApi} from "../../../services/api/authService";
 import {useNavigate} from "react-router-dom";
 import Link from "antd/lib/typography/Link";
+import {validateEmail, validatePassword, validateUsername} from "../utils/validators";
 
 export const RegisterPage = () => {
     const [form] = useForm();
@@ -76,7 +75,7 @@ export const RegisterPage = () => {
                         </Space>
                         <Form disabled={isLoading} form={form} onFinish={handleRegister}>
                             <Form.Item
-                                name="fistname"
+                                name="first_name"
                                 rules={[
                                     {required: true, message: 'Enter your first name'}
                                 ]}
@@ -85,7 +84,7 @@ export const RegisterPage = () => {
                             </Form.Item>
 
                             <Form.Item
-                                name="lastname"
+                                name="last_name"
                                 rules={[
                                     {required: true, message: 'Enter your last name'},
                                 ]}
@@ -101,6 +100,15 @@ export const RegisterPage = () => {
                                 ]}
                             >
                                 <Input prefix={"@"} placeholder="Username"/>
+                            </Form.Item>
+
+                            <Form.Item
+                                name="passport_number"
+                                rules={[
+                                    {required: true, message: 'Enter your number of id card'},
+                                ]}
+                            >
+                                <Input prefix={"#"} placeholder="Id card"/>
                             </Form.Item>
 
                             <Form.Item

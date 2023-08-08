@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Form, Input, Space} from "antd";
-import {validateIPAddress, validatePort} from "../../../common/utils/validators";
+import {validateIPAddress, validatePort} from "../utils/validators";
 
 export const ProxyForm = ({handleOk, handleCancel}) => {
 

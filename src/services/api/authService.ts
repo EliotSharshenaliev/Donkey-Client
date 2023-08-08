@@ -18,9 +18,10 @@ export const loginApi = async (credentials) => {
     }
 };
 
-export const logoutApi = async (setUser) => {
+export const logoutApi = async () => {
     try {
-        await requests.get("/api/v1/auth/logout")
+        const response = await requests.get("/api/v1/auth/logout")
+        return response.data
     } catch (e) {
         throw (e)
     }

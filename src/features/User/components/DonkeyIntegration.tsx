@@ -5,13 +5,10 @@ import {IBot} from "../../../common/types/socket-types";
 import {CreateButton} from "./CreateButton";
 import {ProxyForm} from "./ProxyForm";
 import {renderStatusBot} from "../../../common/utils/renderStatusBot";
+import {IProxy} from "../../../common/types/proxy-type";
+import {useSocketURL} from "../../../common/socket/useSocketURL";
 
 
-
-interface IProxy {
-    ipAddress: string,
-    port: string | number
-}
 
 export const DonkeyIntegration = () => {
     const {user} = useAuth()
@@ -21,11 +18,13 @@ export const DonkeyIntegration = () => {
     const [botState, setBotState] = React.useState<IBot | null>(null)
     const [proxy, setProxy] = React.useState<IProxy | null>(null)
     const [isLoading, setLoading] = React.useState(false)
+    const {url, loadingUrl} = useSocketURL()
+
     const handleJoin = () => {
         SetConnecting(true)
-        if(proxy != null){
+        if(proxy != null && url && !loadingUrl){
 
-            const SOCKET_URL = process.env.REACT_APP_SOCKET_URL + `/ws/client/${user.id}/${proxy.ipAddress}/${proxy.port}/`
+            const SOCKET_URL = url + `/ws/client/${user.id}/${proxy.ipAddress}/${proxy.port}/`
 
             // @ts-ignore
             const ws = new WebSocket(SOCKET_URL);
